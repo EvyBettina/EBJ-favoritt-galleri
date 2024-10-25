@@ -23,6 +23,32 @@ function toggleFavorited(card) {
     url: image.src,
     name: image.alt,
     };
-    
-    console.log(imageObject);
+
+    // Last inn favorit listen fra local storage
+    let favorites = loadFavorites();
+
+    // Anta at vi ikke har lagt den til i favoritter enda
+       favorites.push(imageObject);
+
+    // Lagre den oppdaterte listen i local storage
+    let updatedFavoritesString = JSON.stringify(favorites)
+    localStorage.setItem("favorites", updatedFavoritesString)
+
+    console.log(favorites);
+}
+
+function loadFavorites() {
+      // Last inn favorit listen fra local storage
+      let favoritesString = localStorage.getItem("favorites");
+
+      let favorites;
+      if (favoritesString === null) {
+           //Hvis første gang på siden, lag et nytt array (liste)
+          favorites = [];
+      } else {
+          // Hvis vi har vært her før, konverter fra tekst streng til et array (liste)
+          favorites = JSON.parse(favoritesString);
+      }
+
+      return favorites;
 }
