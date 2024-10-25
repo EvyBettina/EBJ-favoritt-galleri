@@ -6,16 +6,23 @@ for (let imageCard of allImageCards) {
     let favoritButton = imageCard.querySelector("button");
 
 // Så legger vi til en egen fuksjon, arrow funksjon "() => {};
-
 favoritButton.addEventListener("click", () => {
     toggleFavorited(imageCard);
 });
-    
-    console.log(imageCard);
 }
 
-
-// Favoritt funksjonen
+/**
+ * Favoritt funksjonen
+ * @param {Element} card 
+ */
 function toggleFavorited(card) {
-    console.log(card);
+    // Hent ut bilde url og bilde navn
+    let image = card.querySelector("img");
+
+    let imageObject = {
+    url: image.src,
+    name: image.alt,
+    };
+    
+    console.log(imageObject);
 }
